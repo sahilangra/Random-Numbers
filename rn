@@ -1,0 +1,51 @@
+package w;
+import java.util.*;
+
+public class iu{
+	static int output[];//all random number saved here
+	static int total;//total number of random numbers needed
+	static int top=0;//stack pointer for top element of output[]
+	public static void main(String[] args)
+	{
+		Scanner inputscanner=new Scanner(System.in);
+		System.out.println("enter total number of Random numbers to be Generated(NON duplicates)");
+		total=inputscanner.nextInt();
+		
+		System.out.println("Enter the Maximum value upto which the numbers are to be generated");
+		int max=inputscanner.nextInt();//@param maximum limit
+		
+		System.out.println("Enter the Minimal value above which the numbers are to be generated");
+		int min=inputscanner.nextInt();//@param minimum limit
+		
+		if(max<min){System.out.println("ERROR:Minimal value cannot be greater than maximal value");}
+		else if(total>(max-min)){System.out.println("ERROR:Range too small");}
+		else{
+		int output[]=new int[total+1];
+		for(int i=0;i<total;i++)
+		{int check=1;//checks for duplicates
+			Random random=new Random();
+			int n=random.nextInt(max);//@param random generated variable
+			if(n>=min)
+			{
+				for(int q=0;q<top;q++)//@param q , random variable used
+				{
+					  if(output[q]==n)
+					    {check =-1;
+					     i--;
+					     break;
+					    }
+				}
+				    if(check==1)
+				      {
+					     output[top]=n;
+					     top++;
+				      }		
+			        }
+			  else{i--;}
+		   }
+		  System.out.println("The numbers are:");
+		   for(int p=0;p<top;p++)	//@param p , random variable used
+		     {System.out.println(output[p]);}
+	}
+ }
+}
